@@ -1,0 +1,12 @@
+<div style="border: 1px solid red">
+  <ace-editor [(text)]="text"
+              [mode]="'sql'"
+              [theme]="'eclipse'"
+              [options]="options"
+              [readOnly]="false"
+              [autoUpdateContent]="true"
+              [durationBeforeCallback]="1000"
+              (textChanged)="onChange($event)"
+              #editor style="height:250px;">
+  </ace-editor>
+</div>

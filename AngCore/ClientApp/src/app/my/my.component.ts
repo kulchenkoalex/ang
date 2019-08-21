@@ -1,29 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, AfterViewInit   } from '@angular/core';
 
 @Component({
-  template: `
-  <div ace-editor
-       [(text)]="text" // possible two way binding (thx ChrisProlls)
-       [mode]="'sql'" //string or object (thx ckiffel)
-       [theme]="'eclipse'"
-       [options]="options"
-       [readOnly]="false"
-       [autoUpdateContent]="true" //change content when [text] change
-       [durationBeforeCallback]="1000" //wait 1s before callback 'textChanged' sends new value
-       (textChanged)="onChange($event)"
-       style="min-height: 200px; width:100%; overflow: auto;"></div>
-  `
+    selector: 'app-my',
+    templateUrl: './my.component.html',
+    styleUrls: ['./my.component.css']
 })
 /** my component*/
-export class MyComponent {
-    /** my ctor */
-    //constructor() {
+export class MyComponent implements AfterViewInit{
+  name = 'Angular 6';
+  @ViewChild('editor') editor;
 
-    //}
-  text: string = "";
-  options: any = { maxLines: 1000, printMargin: false };
+  ngAfterViewInit() {
 
-  onChange(code) {
-    console.log("new code", code);
+    this.editor.getEditor().setOptions({
+      showLineNumbers: true,
+      tabSize: 2
+    });
+
+    this.editor.mode = 'javascript';
+    this.editor.value = `function testThis() {
+  console.log("it's working!")
+}`
+
+    this.editor.getEditor().commands.addCommand({
+      name: "showOtherCompletions",
+      bindKey: "Ctrl-.",
+      exec: function (editor) {
+
+      }
+    })
+  }
+
+  getValue() {
+    console.log(this.editor.value)
+    console.log(eval(this.editor.value));
   }
 }
