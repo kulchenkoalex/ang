@@ -1,12 +1,28 @@
+
+<script>
+  // trigger extension
+  ace.require("ace/ext/language_tools");
+  var editor = ace.edit("editor");
+  editor.session.setMode("ace/mode/html");
+  editor.setTheme("ace/theme/tomorrow");
+  // enable autocompletion and snippets
+  editor.setOptions({
+    enableBasicAutocompletion: true,
+    enableSnippets: true,
+    enableLiveAutocompletion: false
+  });
+</script>
+
+<script src="./show_own_source.js"></script>
 <div style="border: 1px solid red">
   <ace-editor [(text)]="text"
-              [mode]="'sql'"
+              [mode]="'kulniy'"
               [theme]="'eclipse'"
               [options]="options"
               [readOnly]="false"
               [autoUpdateContent]="true"
               [durationBeforeCallback]="1000"
-              (textChanged)="onChange($event)"
               #editor style="height:250px;">
   </ace-editor>
 </div>
+

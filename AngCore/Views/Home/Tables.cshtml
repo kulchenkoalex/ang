@@ -1,0 +1,19 @@
+﻿@model AngCore.Models.TableNamesList
+@{
+    ViewData["Title"] = "Tables";
+}
+
+<h1>Tables in @Model.Database_name</h1>
+<div class="text-center">
+    @using (Html.BeginForm("Columns", "Home"))
+    {
+        <select name="tablename">
+            @foreach (string name in Model.Tables)
+            {
+                <option value="@name">@name</option>
+            }
+        </select>
+        <input type="submit" />
+    }
+</div>
+

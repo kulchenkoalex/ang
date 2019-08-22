@@ -1,4 +1,13 @@
-import { Component, ViewChild, AfterViewInit   } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import 'brace';
+import '../ace-builds/src-noconflict/mode-kulniy.js';
+
+//import '../ace-builds/src-noconflict/ace.js';
+//import '../ace-build/src-noconflict/ext-language_tools.js';
+import 'brace/mode/html';
+import 'brace/mode/javascript';
+import 'brace/theme/eclipse';
+
 
 @Component({
     selector: 'app-my',
@@ -12,27 +21,6 @@ export class MyComponent implements AfterViewInit{
 
   ngAfterViewInit() {
 
-    this.editor.getEditor().setOptions({
-      showLineNumbers: true,
-      tabSize: 2
-    });
 
-    this.editor.mode = 'javascript';
-    this.editor.value = `function testThis() {
-  console.log("it's working!")
-}`
-
-    this.editor.getEditor().commands.addCommand({
-      name: "showOtherCompletions",
-      bindKey: "Ctrl-.",
-      exec: function (editor) {
-
-      }
-    })
-  }
-
-  getValue() {
-    console.log(this.editor.value)
-    console.log(eval(this.editor.value));
   }
 }

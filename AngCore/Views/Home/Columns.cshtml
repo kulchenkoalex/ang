@@ -1,0 +1,26 @@
+﻿@model AngCore.Models.TableViewModel
+@{
+    ViewData["Title"] = "Columns";
+}
+
+<h1>Columns in @Model.Name</h1>
+<ul>
+    @foreach (var name in Model.Columns)
+    {
+        <li>@name</li>
+    }
+</ul>
+<h1>Foreign Keys</h1>
+<ul>
+    @foreach (string fk in (List<String>)ViewData["FKeys"])
+    {
+        <li>@fk</li>
+    }
+</ul>
+@using (Html.BeginForm("GetExcel", "Home"))
+{
+<input type="hidden" name="tablename" value="@Model.Name">
+
+    <input value="Get table data" type="submit" />
+
+}

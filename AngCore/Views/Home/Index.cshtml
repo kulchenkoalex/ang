@@ -1,0 +1,13 @@
+﻿@model AngCore.Models.Databases
+@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Connection string</h1>
+
+<div class="text-center">
+    @using (Html.BeginForm("Databases", "Home"))
+    {
+        <input type="text" name="dbconnection" />
+        <input type="submit" />
+    }
+</div>
